@@ -1,281 +1,12 @@
-// import React, { useState, useEffect } from 'react';
-// import { motion, AnimatePresence } from 'framer-motion';
-// import {ProjectCard} from './ProjectCard'
-// import { ChevronUp } from 'lucide-react';
-
-// export const ProjectsSection = () => {
-//   const [selectedFilter, setSelectedFilter] = useState('all');
-//   const [visibleProjects, setVisibleProjects] = useState([]);
-//   const [showScrollButton, setShowScrollButton] = useState(false);
-  
-//   // Sample project data - replace with your actual projects
-//   const allProjects = [
-//     {
-//       id: 1,
-//       title: "E-Commerce Platform",
-//       description: "A full-featured online store with cart, payment processing, and admin dashboard.",
-//       imgUrl: "/api/placeholder/600/400",
-//       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-//       category: "fullstack",
-//       link: "https://example.com/ecommerce",
-//       github: "https://github.com/yourusername/ecommerce",
-//       featured: true
-//     },
-//     {
-//       id: 2,
-//       title: "AI Content Generator",
-//       description: "Tool that leverages AI to create marketing content and social media posts.",
-//       imgUrl: "/api/placeholder/600/400",
-//       technologies: ["Next.js", "OpenAI API", "Tailwind CSS", "Vercel"],
-//       category: "frontend",
-//       link: "https://example.com/ai-tool",
-//       github: "https://github.com/yourusername/ai-tool"
-//     },
-//     {
-//       id: 3,
-//       title: "Fitness Tracker App",
-//       description: "Mobile app for tracking workouts, nutrition, and fitness progress.",
-//       imgUrl: "/api/placeholder/600/400",
-//       technologies: ["React Native", "Firebase", "Redux", "Expo"],
-//       category: "mobile",
-//       link: "https://example.com/fitness",
-//       github: "https://github.com/yourusername/fitness-app",
-//       featured: true
-//     },
-//     {
-//       id: 4,
-//       title: "Personal Finance Dashboard",
-//       description: "Interactive dashboard to visualize spending habits and financial goals.",
-//       imgUrl: "/api/placeholder/600/400",
-//       technologies: ["Vue.js", "D3.js", "Express", "PostgreSQL"],
-//       category: "fullstack",
-//       link: "https://example.com/finance",
-//       github: "https://github.com/yourusername/finance-dashboard"
-//     },
-//     {
-//       id: 5,
-//       title: "Weather Forecast App",
-//       description: "Real-time weather forecasts with interactive maps and alerts.",
-//       imgUrl: "/api/placeholder/600/400",
-//       technologies: ["React", "Weather API", "Leaflet", "Styled Components"],
-//       category: "frontend",
-//       link: "https://example.com/weather",
-//       github: "https://github.com/yourusername/weather-app"
-//     },
-//     {
-//       id: 6,
-//       title: "Task Management API",
-//       description: "RESTful API for task management with authentication and team collaboration.",
-//       imgUrl: "/api/placeholder/600/400",
-//       technologies: ["Node.js", "Express", "MongoDB", "JWT"],
-//       category: "backend",
-//       link: "https://example.com/task-api",
-//       github: "https://github.com/yourusername/task-api"
-//     }
-//   ];
-  
-//   // Filter categories
-//   const filters = [
-//     { id: 'all', label: 'All Projects' },
-//     { id: 'frontend', label: 'Frontend' },
-//     { id: 'backend', label: 'Backend' },
-//     { id: 'fullstack', label: 'Full Stack' },
-//     { id: 'mobile', label: 'Mobile Apps' },
-//     { id: 'featured', label: 'Featured' }
-//   ];
-  
-//   // Update visible projects when filter changes
-//   useEffect(() => {
-//     if (selectedFilter === 'all') {
-//       setVisibleProjects(allProjects);
-//     } else if (selectedFilter === 'featured') {
-//       setVisibleProjects(allProjects.filter(project => project.featured));
-//     } else {
-//       setVisibleProjects(allProjects.filter(project => project.category === selectedFilter));
-//     }
-//   }, [selectedFilter]);
-  
-//   // Scroll to top button visibility
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setShowScrollButton(window.scrollY > 300);
-//     };
-    
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
-  
-//   // Scroll to top function
-//   const scrollToTop = () => {
-//     window.scrollTo({
-//       top: 0,
-//       behavior: 'smooth'
-//     });
-//   };
-  
-//   // Animation variants
-//   const containerVariants = {
-//     hidden: { opacity: 0 },
-//     visible: {
-//       opacity: 1,
-//       transition: {
-//         staggerChildren: 0.1
-//       }
-//     }
-//   };
-  
-//   const itemVariants = {
-//     hidden: { y: 20, opacity: 0 },
-//     visible: {
-//       y: 0,
-//       opacity: 1,
-//       transition: { duration: 0.5 }
-//     },
-//     exit: {
-//       y: -10,
-//       opacity: 0,
-//       transition: { duration: 0.3 }
-//     }
-//   };
-
-//   return (
-//     <section className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-//       {/* Background Elements */}
-//       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-//         <div className="absolute top-40 left-10 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"></div>
-//         <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl"></div>
-//         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-blue-500/5 to-cyan-500/5 blur-3xl"></div>
-//       </div>
-      
-//       <div className="container mx-auto px-4 relative z-10">
-//         {/* Section Header */}
-//         <div className="text-center mb-16">
-//           <motion.h2 
-//             className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent"
-//             initial={{ opacity: 0, y: -20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.6 }}
-//             viewport={{ once: true }}
-//           >
-//             My Projects
-//           </motion.h2>
-          
-//           <motion.p 
-//             className="text-lg text-gray-300 max-w-2xl mx-auto"
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.6, delay: 0.2 }}
-//             viewport={{ once: true }}
-//           >
-//             Explore my portfolio of projects that showcase my skills and experience in web development, 
-//             mobile apps, and more. Each project represents my passion for creating innovative solutions.
-//           </motion.p>
-//         </div>
-        
-//         {/* Filter Buttons */}
-//         <motion.div 
-//           className="flex justify-center flex-wrap gap-3 mb-12"
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6, delay: 0.3 }}
-//           viewport={{ once: true }}
-//         >
-//           {filters.map(filter => (
-//             <motion.button
-//               key={filter.id}
-//               className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-//                 selectedFilter === filter.id
-//                   ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/20'
-//                   : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
-//               }`}
-//               onClick={() => setSelectedFilter(filter.id)}
-//               whileHover={{ scale: 1.05 }}
-//               whileTap={{ scale: 0.98 }}
-//             >
-//               {filter.label}
-//             </motion.button>
-//           ))}
-//         </motion.div>
-        
-//         {/* Projects Grid */}
-//         <AnimatePresence mode="wait">
-//           <motion.div 
-//             key={selectedFilter}
-//             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-//             variants={containerVariants}
-//             initial="hidden"
-//             animate="visible"
-//             exit="hidden"
-//           >
-//             {visibleProjects.map(project => (
-//               <motion.div 
-//                 key={project.id}
-//                 variants={itemVariants}
-//                 layout
-//               >
-//                 <ProjectCard {...project} />
-//               </motion.div>
-//             ))}
-            
-//             {visibleProjects.length === 0 && (
-//               <motion.div 
-//                 className="col-span-full text-center py-20 text-gray-400"
-//                 initial={{ opacity: 0 }}
-//                 animate={{ opacity: 1 }}
-//                 exit={{ opacity: 0 }}
-//               >
-//                 No projects found in this category.
-//               </motion.div>
-//             )}
-//           </motion.div>
-//         </AnimatePresence>
-        
-//         {/* More Projects Button */}
-//         <motion.div 
-//           className="flex justify-center mt-16"
-//           initial={{ opacity: 0 }}
-//           whileInView={{ opacity: 1 }}
-//           transition={{ delay: 0.6 }}
-//           viewport={{ once: true }}
-//         >
-//           <motion.a
-//             href="/all-projects"
-//             className="px-8 py-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/30 hover:to-cyan-600/30 border border-blue-500/30 rounded-lg text-blue-400 font-medium flex items-center gap-2 transition-all"
-//             whileHover={{ y: -2, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.3)" }}
-//             whileTap={{ y: 0 }}
-//           >
-//             View All Projects
-//             <ChevronUp className="rotate-90" size={16} />
-//           </motion.a>
-//         </motion.div>
-//       </div>
-      
-//       {/* Scroll to top button */}
-//       <AnimatePresence>
-//         {showScrollButton && (
-//           <motion.button
-//             className="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg z-50"
-//             onClick={scrollToTop}
-//             initial={{ opacity: 0, y: 20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             exit={{ opacity: 0, y: 20 }}
-//             whileHover={{ y: -2, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)" }}
-//             whileTap={{ y: 0 }}
-//           >
-//             <ChevronUp size={24} />
-//           </motion.button>
-//         )}
-//       </AnimatePresence>
-//     </section>
-//   );
-// };
-
-// export default ProjectsSection;
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProjectCard } from './ProjectCard';
 import { ArrowUp, Search, Filter } from 'lucide-react';
+import skillSyncImage from '../assets/img/SkillSync.png';
+import chitchat from '../assets/img/image.png';
+import Ecom from '../assets/img/E-Commerce.png';
+import Nova from '../assets/img/nOVA.png';
+import MED from '../assets/img/med.png';
 
 export const ProjectsSection = () => {
   const [selectedFilter, setSelectedFilter] = useState('all');
@@ -288,66 +19,64 @@ export const ProjectsSection = () => {
   const allProjects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-featured online store with cart functionality, payment processing, user authentication, and admin dashboard for product management.",
-      imgUrl: "/api/placeholder/600/400",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
+      title: "Skill Sync",
+      description: "Skill Sync is an innovative platform designed to bridge the gap between your current skill set and the requirements of your dream job.",
+      imgUrl: skillSyncImage,
+      technologies: ["Next.js", "Node.js", "MongoDB", "Express.js", "ML" , "AI" ,"Tailwind CSS", "Vercel"],
       category: "fullstack",
-      link: "https://example.com/ecommerce",
-      github: "https://github.com/yourusername/ecommerce",
+      link: "https://skill-sync-mu.vercel.app/",
+      github: "https://github.com/Namann-14/Skill-Sync",
       featured: true
     },
     {
       id: 2,
-      title: "AI Content Generator",
-      description: "Web application that leverages AI to create marketing content, social media posts, and copywriting for various business needs.",
-      imgUrl: "/api/placeholder/600/400",
-      technologies: ["Next.js", "OpenAI API", "Tailwind CSS", "Vercel"],
-      category: "frontend",
-      link: "https://example.com/ai-tool",
-      github: "https://github.com/yourusername/ai-tool"
+      title: "ChitChat",
+      description: "AI Chatbot This chatbot is designed to integrate multiple AI models seamlessly. Just add your API keys, and the chatbot will automatically connect and start working. No extra setup is needed",
+      imgUrl: chitchat,
+      technologies: ["Next.js", "OpenAI API", "Tailwind CSS", "Vercel" , "TypeScript"],
+      category: "fullstack",
+      link: "https://chit-chat-kappa-ten.vercel.app/",
+      github: "https://github.com/Jatin-L1/ChatBot"
     },
     {
       id: 3,
-      title: "Fitness Tracker App",
-      description: "Mobile application for tracking workouts, nutrition, and fitness progress with customizable goals and detailed analytics.",
-      imgUrl: "/api/placeholder/600/400",
-      technologies: ["React Native", "Firebase", "Redux", "Expo"],
-      category: "mobile",
-      link: "https://example.com/fitness",
-      github: "https://github.com/yourusername/fitness-app",
+      title: "E-Commerce-Website",
+      description: "E-Commerce-Website for real Madrid Merchendise",
+      imgUrl: Ecom,
+      technologies: ["HTML" , "CSS" , "JS" ,"BootStrap"],
+      category: "frontend",
+      link: "https://jatin-l1.github.io/E-Commerce-Website/",
+      github: "https://github.com/Jatin-L1/E-Commerce-Website",
       featured: true
     },
     {
       id: 4,
-      title: "Personal Finance Dashboard",
-      description: "Interactive dashboard to visualize spending habits, track investments, and monitor financial goals with customizable charts.",
-      imgUrl: "/api/placeholder/600/400",
-      technologies: ["Vue.js", "D3.js", "Express", "PostgreSQL"],
+      title: "Nova Acadmey",
+      description: "Nova Academy is a smart student management platform that helps college students handle daily tasks like facial attendance, viewing results, and staying updated on upcoming events.It aims to simplify academic life by centralizing essential student services in one seamless interface.",
+      imgUrl: Nova,
+      technologies: ["JavaScript","TailWindCSS", "Next.js", "Express", "MongoDB" , "Vercel"],
       category: "fullstack",
-      link: "https://example.com/finance",
-      github: "https://github.com/yourusername/finance-dashboard"
+      link: "https://nova-academy-c7t6-coral.vercel.app/",
+      github: "https://github.com/Jatin-L1/Nova-Academy"
     },
     {
       id: 5,
-      title: "Weather Forecast App",
-      description: "Real-time weather forecasts with interactive maps, alerts, and historical data comparisons for locations worldwide.",
-      imgUrl: "/api/placeholder/600/400",
-      technologies: ["React", "Weather API", "Leaflet", "Styled Components"],
-      category: "frontend",
-      link: "https://example.com/weather",
-      github: "https://github.com/yourusername/weather-app"
+      title: "MedNexus",
+      description: "MedNexus is a healthcare management platform designed to connect patients, doctors, and medical services through a centralized system.",
+      imgUrl: MED,
+      technologies: ["NextJS", "Gemni API", "Leaflet", "MongoDB" , "Express", "Vercel"],
+      category: "fullstack",
+      link: "https://med-nexus.vercel.app/",
+      github: "https://github.com/Jatin-L1/MedNexus"
     },
     {
       id: 6,
-      title: "Task Management API",
-      description: "RESTful API for task management with authentication, team collaboration features, and automated notifications.",
-      imgUrl: "/api/placeholder/600/400",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
-      category: "backend",
-      link: "https://example.com/task-api",
-      github: "https://github.com/yourusername/task-api"
-    }
+      title: "SecureX",
+      description: "A secure, real-time chat application designed to provide a seamless and highly secure communication experience. Built with React, Firebase, and EmailJS, SecureX offers encrypted communication, session locking, and OTP-based access to keep conversations private and secure.",
+      technologies: ["REACT" , "JavaScript" , "Firebase"],
+      category: "frontend",
+      github: "https://github.com/Jatin-L1/SecureX"
+    },
   ];
   
   // Filter categories
