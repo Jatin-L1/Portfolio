@@ -503,20 +503,59 @@ const AboutSection = () => {
 
           <h2 className="text-5xl lg:text-7xl font-bold text-white mb-8">About Me</h2>
 
-          <p className="text-xl text-cyan-400 mb-8 font-light">Passionate Developer | Problem Solver | UI Enthusiast</p>
+          <p className="text-xl text-cyan-400 mb-8 font-light">Passionate Developer | Problem Solver | UI Enthusiast | Leader</p>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <p className="text-lg text-white/70 leading-relaxed">
-                I'm a passionate developer with expertise in building modern web applications. I enjoy solving complex
-                problems and creating intuitive, user-friendly interfaces that make a real impact.
-              </p>
+  <div className="space-y-6">
+    <p className="text-lg text-white/70 leading-relaxed">
+      I'm a passionate developer with expertise in building modern web applications. I enjoy solving complex
+      problems and creating intuitive, user-friendly interfaces that make a real impact.
+    </p>
 
-              <p className="text-lg text-white/70 leading-relaxed">
-                From exploring diverse programming languages to working on cutting-edge projects, I am driven by
-                curiosity and the desire to make an impact in the tech space.
-              </p>
-            </div>
+    <p className="text-lg text-white/70 leading-relaxed">
+      As a <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent font-bold">hackathon leader </span>, 
+      I've successfully led <span className="bg-gradient-to-r from-pink-400 to-orange-500 bg-clip-text text-transparent font-bold">10+ teams </span> 
+      through intense coding challenges. I thrive in high-pressure environments where 
+      <span className="text-cyan-400 font-bold"> creativity meets execution</span>.
+    </p>
+
+    <p className="text-lg text-white/70 leading-relaxed">
+      From exploring diverse programming languages to working on cutting-edge projects, I am driven by
+      curiosity and the desire to make an impact in the tech space. Let's build the future together! 🚀
+    </p>
+
+    {/* Epic Leadership Badge */}
+    <motion.div 
+      className="relative p-4 bg-gradient-to-r from-purple-500/20 via-cyan-500/20 to-pink-500/20 rounded-xl border border-white/20 backdrop-blur-sm overflow-hidden group"
+      whileHover={{ scale: 1.02 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
+      <div className="relative flex items-center gap-3">
+        <motion.div 
+          className="text-2xl"
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          🏆
+        </motion.div>
+        <div>
+          <div className="text-white font-bold">Hackathon Leader</div>
+          <div className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent font-bold text-sm">
+            10+ Teams Led ⚡
+          </div>
+        </div>
+        <motion.div
+          className="ml-auto text-xl"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          🚀
+        </motion.div>
+      </div>
+    </motion.div>
+  </div>
 
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white mb-4">Current Focus</h3>
@@ -527,6 +566,7 @@ const AboutSection = () => {
                   "Building practical projects and solutions",
                   "Enhacing my problem solving techinique",
                   "Contributing to open-source projects",
+                  "Being the best version of myself",
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -565,8 +605,8 @@ const TechStackSection = () => {
 
   const skillsData = [
     // Web Development (Frontend)
-    { name: "HTML", level: 95, category: "frontend", icon: "📝", color: "from-orange-400 to-red-500", x: 20, y: 15, years: 2 },
-    { name: "CSS", level: 95, category: "frontend", icon: "🎨", color: "from-blue-400 to-purple-500", x: 70, y: 25, years: 4 },
+    { name: "HTML", level: 95, category: "frontend", icon: "📝", color: "from-orange-400 to-red-500", x: 20, y: 25, years: 2 },
+    { name: "CSS", level: 95, category: "frontend", icon: "🎨", color: "from-blue-400 to-purple-500", x: 75, y: 25, years: 4 },
     { name: "Next.js", level: 88, category: "frontend", icon: "🔥", color: "from-gray-700 to-gray-900", x: 45, y: 35, years: 2 },
     { name: "JavaScript", level: 88, category: "frontend", icon: "📘", color: "from-yellow-400 to-orange-500", x: 15, y: 55, years: 3 },
     { name: "Tailwind CSS", level: 95, category: "frontend", icon: "🎨", color: "from-cyan-400 to-blue-500", x: 75, y: 45, years: 3 },
@@ -582,14 +622,18 @@ const TechStackSection = () => {
     { name: "Solidity", level: 95, category: "languages", icon: "🪨", color: "from-purple-500 to-purple-700", x: 40, y: 20, years: 0.5 },
     { name: "C", level: 75, category: "languages", icon: "💻", color: "from-blue-500 to-blue-700", x: 85, y: 35, years: 1.5 },
     { name: "C++", level: 88, category: "languages", icon: "🧠", color: "from-blue-600 to-purple-600", x: 10, y: 40, years: 1.5 },
-    { name: "Python", level: 75, category: "languages", icon: "🐍", color: "from-yellow-400 to-green-500", x: 65, y: 15, years: 2 },
+    { name: "Python", level: 75, category: "languages", icon: "🐍", color: "from-yellow-400 to-green-500", x: 65, y: 20, years: 2 },
     
     // Data & Libraries
     { name: "NumPy", level: 88, category: "data", icon: "🔢", color: "from-blue-400 to-blue-600", x: 35, y: 50, years: 1 },
-    { name: "Pandas", level: 88, category: "data", icon: "📈", color: "from-green-400 to-blue-500", x: 20, y: 30, years: 1 },
+    { name: "Pandas", level: 88, category: "data", icon: "📈", color: "from-green-400 to-blue-500", x: 20, y: 40, years: 1 },
     
     // Emerging Technologies
     { name: "Blockchain", level: 88, category: "emerging", icon: "👁️", color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
+    { name: "Etherium", level: 88, category: "emerging", icon: "🔥", color: "from-green-400 to-blue-500", x: 20, y: 40, years: 0.5 },
+    { name: "Ploygon", level: 88, category: "emerging", icon: "💅", color: "from-orange-500 to-red-600", x: 10, y: 20, years: 0.5 },
+    { name: "Web3.js", level: 88, category: "frontend", icon: "🕸️", color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
+    { name: "Ether.js", level: 88, category: "frontend", icon: "🙂‍↕️", color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
     
     // Computer Fundamentals
     { name: "DSA", level: 88, category: "fundamentals", icon: "🗂️", color: "from-indigo-500 to-purple-600", x: 50, y: 25, years: 2 },
