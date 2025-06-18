@@ -14,15 +14,50 @@ import {
   Instagram,
   Code2,
   FileText,
+  Home,
+  User,
+  Code,
+  FolderGit2,
+  Award,
+  FileHtml,
+  Paintbrush,
+  ArrowRight,
+  FileCode,
+  Wind,
+  Atom,
+  Server,
+  NodeJs,
+  Database,
+  Coffee,
+  FileBox,
+  Hash,
+  Braces,
+  PanelLeftClose,
+  Calculator,
+  BarChart2,
+  Link2,
+  Hexagon,
+  Triangle,
+  Globe,
+  GitBranch, // Changed from Workflow
+  GitFork, // Changed from BinaryTree
+  Layers,
+  Network,
+  Cpu,
+  Table2, // Changed from Table
+  Sparkles2, // Changed from Sparkles
+  Layout,
+  LineChart,
+  FlaskConical,
+  HardDrive,
+  Star,
+  Terminal
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import ContactForm from '@/components/ContactForm'
-
-
-// Fix the AnimatedBackground component
 const AnimatedBackground = () => {
   const [mounted, setMounted] = useState(false)
   const [particles, setParticles] = useState<Array<{
@@ -118,12 +153,12 @@ const FloatingNav = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
   const navItems = [
-    { id: "home", icon: "🏠", label: "Home" },
-    { id: "about", icon: "👨‍💻", label: "About" },
-    { id: "tech", icon: "⚡", label: "Tech Stack" },
-    { id: "projects", icon: "🚀", label: "Projects" },
-    { id: "achievements", icon: "🏆", label: "Awards" },
-    { id: "contact", icon: "📧", label: "Contact" },
+    { id: "home", icon: <Home size={20} />, label: "Home" },
+    { id: "about", icon: <User size={20} />, label: "About" },
+    { id: "tech", icon: <Code size={20} />, label: "Tech Stack" },
+    { id: "projects", icon: <FolderGit2 size={20} />, label: "Projects" },
+    { id: "achievements", icon: <Award size={20} />, label: "Awards" },
+    { id: "contact", icon: <Mail size={20} />, label: "Contact" },
   ]
 
   return (
@@ -156,7 +191,7 @@ const FloatingNav = () => {
               onHoverStart={() => setHoveredItem(item.id)}
               onHoverEnd={() => setHoveredItem(null)}
             >
-              <span className="text-xl">{item.icon}</span>
+              {item.icon}
 
               {/* Enhanced Tooltip */}
               <AnimatePresence>
@@ -235,13 +270,35 @@ const HeroSection = () => {
       description: "Lifestyle",
     },
     {
-      icon: Mail,
-      href: "jatinsharmasm2435@gmail.com",
-      label: "Email",
-      color: "from-green-600 to-emerald-600",
-      hoverColor: "from-green-500 to-emerald-500",
-      description: "Direct Contact",
-    },
+  icon: Mail,
+  href: "#", // Changed from email address to prevent navigation
+  label: "Email",
+  color: "from-green-600 to-emerald-600",
+  hoverColor: "from-green-500 to-emerald-500",
+  description: "Direct Contact",
+  onClick: (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("jatinsharmasm2435@gmail.com");
+    
+    // Show feedback toast
+    const toast = document.createElement('div');
+    toast.className = "fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 flex items-center";
+    toast.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      Email copied to clipboard!
+    `;
+    document.body.appendChild(toast);
+    
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.5s';
+      setTimeout(() => document.body.removeChild(toast), 500);
+    }, 2500);
+  }
+},
   ]
 
   return (
@@ -346,6 +403,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.4 + index * 0.1 }}
+                    onClick={social.onClick}
                   >
                     <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 transition-all duration-300 group-hover:border-white/30">
                       {/* Gradient Background on Hover */}
@@ -598,59 +656,58 @@ const AboutSection = () => {
     </section>
   )
 }
-
 const TechStackSection = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState("all")
 
   const skillsData = [
     // Web Development (Frontend)
-    { name: "HTML", level: 95, category: "frontend", icon: "📝", color: "from-orange-400 to-red-500", x: 20, y: 25, years: 2 },
-    { name: "CSS", level: 95, category: "frontend", icon: "🎨", color: "from-blue-400 to-purple-500", x: 75, y: 25, years: 4 },
-    { name: "Next.js", level: 88, category: "frontend", icon: "🔥", color: "from-gray-700 to-gray-900", x: 45, y: 35, years: 2 },
-    { name: "JavaScript", level: 88, category: "frontend", icon: "📘", color: "from-yellow-400 to-orange-500", x: 15, y: 55, years: 3 },
-    { name: "Tailwind CSS", level: 95, category: "frontend", icon: "🎨", color: "from-cyan-400 to-blue-500", x: 75, y: 45, years: 3 },
-    { name: "React", level: 88, category: "frontend", icon: "⚛️", color: "from-blue-400 to-cyan-500", x: 30, y: 70, years: 2 },
+    { name: "HTML", level: 95, category: "frontend", icon: <FileCode size={20} />, color: "from-orange-400 to-red-500", x: 20, y: 25, years: 2 },
+    { name: "CSS", level: 95, category: "frontend", icon: <Paintbrush size={20} />, color: "from-blue-400 to-purple-500", x: 75, y: 25, years: 4 },
+    { name: "Next.js", level: 88, category: "frontend", icon: <ArrowRight size={20} />, color: "from-gray-700 to-gray-900", x: 45, y: 35, years: 2 },
+    { name: "JavaScript", level: 88, category: "frontend", icon: <FileCode size={20} />, color: "from-yellow-400 to-orange-500", x: 15, y: 55, years: 3 },
+    { name: "Tailwind CSS", level: 95, category: "frontend", icon: <Wind size={20} />, color: "from-cyan-400 to-blue-500", x: 75, y: 45, years: 3 },
+    { name: "React", level: 88, category: "frontend", icon: <Atom size={20} />, color: "from-blue-400 to-cyan-500", x: 30, y: 70, years: 2 },
     
     // Backend
-    { name: "Express", level: 95, category: "backend", icon: "🚂", color: "from-green-500 to-green-700", x: 60, y: 65, years: 1.5 },
-    { name: "Node.js", level: 88, category: "backend", icon: "🧩", color: "from-green-600 to-green-800", x: 80, y: 75, years: 2 },
-    { name: "MongoDB", level: 88, category: "backend", icon: "🍃", color: "from-green-500 to-green-700", x: 25, y: 85, years: 1.5 },
+    { name: "Express", level: 95, category: "backend", icon: <Server size={20} />, color: "from-green-500 to-green-700", x: 60, y: 65, years: 1.5 },
+    { name: "Node.js", level: 88, category: "backend", icon: <Hexagon size={20} />, color: "from-green-600 to-green-800", x: 80, y: 75, years: 2 },
+    { name: "MongoDB", level: 88, category: "backend", icon: <Database size={20} />, color: "from-green-500 to-green-700", x: 25, y: 85, years: 1.5 },
     
     // Programming Languages
-    { name: "Java", level: 95, category: "languages", icon: "☕", color: "from-orange-500 to-red-600", x: 55, y: 80, years: 1.5 },
-    { name: "Solidity", level: 95, category: "languages", icon: "🪨", color: "from-purple-500 to-purple-700", x: 40, y: 20, years: 0.5 },
-    { name: "C", level: 75, category: "languages", icon: "💻", color: "from-blue-500 to-blue-700", x: 85, y: 35, years: 1.5 },
-    { name: "C++", level: 88, category: "languages", icon: "🧠", color: "from-blue-600 to-purple-600", x: 10, y: 40, years: 1.5 },
-    { name: "Python", level: 75, category: "languages", icon: "🐍", color: "from-yellow-400 to-green-500", x: 65, y: 20, years: 2 },
+    { name: "Java", level: 95, category: "languages", icon: <Coffee size={20} />, color: "from-orange-500 to-red-600", x: 55, y: 80, years: 1.5 },
+    { name: "Solidity", level: 95, category: "languages", icon: <FileBox size={20} />, color: "from-purple-500 to-purple-700", x: 40, y: 20, years: 0.5 },
+    { name: "C", level: 75, category: "languages", icon: <Hash size={20} />, color: "from-blue-500 to-blue-700", x: 85, y: 35, years: 1.5 },
+    { name: "C++", level: 88, category: "languages", icon: <Braces size={20} />, color: "from-blue-600 to-purple-600", x: 10, y: 40, years: 1.5 },
+    { name: "Python", level: 75, category: "languages", icon: <PanelLeftClose size={20} />, color: "from-yellow-400 to-green-500", x: 65, y: 20, years: 2 },
     
     // Data & Libraries
-    { name: "NumPy", level: 88, category: "data", icon: "🔢", color: "from-blue-400 to-blue-600", x: 35, y: 50, years: 1 },
-    { name: "Pandas", level: 88, category: "data", icon: "📈", color: "from-green-400 to-blue-500", x: 20, y: 40, years: 1 },
+    { name: "NumPy", level: 88, category: "data", icon: <Calculator size={20} />, color: "from-blue-400 to-blue-600", x: 35, y: 50, years: 1 },
+    { name: "Pandas", level: 88, category: "data", icon: <BarChart2 size={20} />, color: "from-green-400 to-blue-500", x: 20, y: 40, years: 1 },
     
     // Emerging Technologies
-    { name: "Blockchain", level: 88, category: "emerging", icon: "👁️", color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
-    { name: "Etherium", level: 88, category: "emerging", icon: "🔥", color: "from-green-400 to-blue-500", x: 20, y: 40, years: 0.5 },
-    { name: "Ploygon", level: 88, category: "emerging", icon: "💅", color: "from-orange-500 to-red-600", x: 10, y: 20, years: 0.5 },
-    { name: "Web3.js", level: 88, category: "frontend", icon: "🕸️", color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
-    { name: "Ether.js", level: 88, category: "frontend", icon: "🙂‍↕️", color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
+    { name: "Blockchain", level: 88, category: "emerging", icon: <Link2 size={20} />, color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
+    { name: "Etherium", level: 88, category: "emerging", icon: <Hexagon size={20} />, color: "from-green-400 to-blue-500", x: 20, y: 40, years: 0.5 },
+    { name: "Ploygon", level: 88, category: "emerging", icon: <Triangle size={20} />, color: "from-orange-500 to-red-600", x: 10, y: 20, years: 0.5 },
+    { name: "Web3.js", level: 88, category: "frontend", icon: <Globe size={20} />, color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
+    { name: "Ether.js", level: 88, category: "frontend", icon: <GitBranch size={20} />, color: "from-purple-500 to-pink-500", x: 70, y: 60, years: 0.5 },
     
     // Computer Fundamentals
-    { name: "DSA", level: 88, category: "fundamentals", icon: "🗂️", color: "from-indigo-500 to-purple-600", x: 50, y: 25, years: 2 },
-    { name: "OOPs", level: 88, category: "fundamentals", icon: "🧱", color: "from-teal-500 to-cyan-600", x: 80, y: 50, years: 2 },
-    { name: "Networking", level: 88, category: "fundamentals", icon: "🌐", color: "from-green-500 to-teal-500", x: 25, y: 65, years: 1 },
-    { name: "OS", level: 88, category: "fundamentals", icon: "🖥️", color: "from-gray-500 to-gray-700", x: 60, y: 40, years: 2 },
-    { name: "DBMS", level: 88, category: "fundamentals", icon: "🛢️", color: "from-blue-500 to-indigo-600", x: 40, y: 75, years: 2 },
+    { name: "DSA", level: 88, category: "fundamentals", icon: <GitFork size={20} />, color: "from-indigo-500 to-purple-600", x: 50, y: 25, years: 2 },
+    { name: "OOPs", level: 88, category: "fundamentals", icon: <Layers size={20} />, color: "from-teal-500 to-cyan-600", x: 80, y: 50, years: 2 },
+    { name: "Networking", level: 88, category: "fundamentals", icon: <Network size={20} />, color: "from-green-500 to-teal-500", x: 25, y: 65, years: 1 },
+    { name: "OS", level: 88, category: "fundamentals", icon: <Cpu size={20} />, color: "from-gray-500 to-gray-700", x: 60, y: 40, years: 2 },
+    { name: "DBMS", level: 88, category: "fundamentals", icon: <Database size={20} />, color: "from-blue-500 to-indigo-600", x: 40, y: 75, years: 2 },
   ]
 
   const categories = [
-    { id: "all", name: "All Skills", icon: "🌟" },
-    { id: "frontend", name: "Web Development", icon: "💻" },
-    { id: "backend", name: "Backend", icon: "⚙️" },
-    { id: "languages", name: "Programming Languages", icon: "🖥️" },
-    { id: "data", name: "Data & Libraries", icon: "🛠️" },
-    { id: "emerging", name: "Emerging Technologies", icon: "🦺" },
-    { id: "fundamentals", name: "Computer Fundamentals", icon: "📱" },
+    { id: "all", name: "All Skills", icon: <Star size={20} /> },
+    { id: "frontend", name: "Web Development", icon: <Layout size={20} /> },
+    { id: "backend", name: "Backend", icon: <Server size={20} /> },
+    { id: "languages", name: "Programming Languages", icon: <Code size={20} /> },
+    { id: "data", name: "Data & Libraries", icon: <LineChart size={20} /> },
+    { id: "emerging", name: "Emerging Technologies", icon: <FlaskConical size={20} /> },
+    { id: "fundamentals", name: "Computer Fundamentals", icon: <HardDrive size={20} /> },
   ]
 
   const filteredSkills =
@@ -741,7 +798,7 @@ const TechStackSection = () => {
                   <div
                     className={`relative w-16 h-16 bg-gradient-to-r ${skill.color} rounded-full flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-300`}
                   >
-                    <span className="text-2xl">{skill.icon}</span>
+                    <span className="text-white">{skill.icon}</span>
 
                     {/* Skill Level Ring */}
                     <svg className="absolute inset-0 w-16 h-16 -rotate-90">
@@ -765,7 +822,7 @@ const TechStackSection = () => {
 
                   {/* Skill Info Popup */}
                   <AnimatePresence>
-                    {hoveredSkill === skill.name && (
+                      {hoveredSkill === skill.name && (
                       <motion.div
                         className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-lg border border-white/20 rounded-lg px-3 py-2 whitespace-nowrap z-20"
                         initial={{ opacity: 0, y: 10 }}
@@ -792,7 +849,7 @@ const TechStackSection = () => {
                         .map((connectedSkill) => (
                           <svg
                             key={connectedSkill.name}
-                            className="absolute inset-0 w-full h-full"
+                             className="absolute inset-0 w-full h-full"
                             style={{
                               width: "600px",
                               height: "400px",
@@ -819,8 +876,7 @@ const TechStackSection = () => {
               ))}
             </AnimatePresence>
           </div>
-
-          {/* Skills Summary */}
+           {/* Skills Summary */}
           <motion.div
             className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
             initial={{ opacity: 0, y: 30 }}
@@ -833,11 +889,10 @@ const TechStackSection = () => {
               const avgLevel = Math.round(
                 categorySkills.reduce((sum, skill) => sum + skill.level, 0) / categorySkills.length,
               )
-
               return (
                 <Card key={category.id} className="bg-black/20 backdrop-blur-lg border-white/10">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl mb-2">{category.icon}</div>
+                    <div className="text-white mb-2">{category.icon}</div>
                     <div className="text-white font-semibold text-sm">{category.name}</div>
                     <div className="text-cyan-400 text-xs">{avgLevel}% avg</div>
                   </CardContent>
@@ -850,333 +905,6 @@ const TechStackSection = () => {
     </section>
   )
 }
-// // Revolutionary 3D Project Showcase
-// const ProjectsSection = () => {
-//   const [activeProject, setActiveProject] = useState(0)
-//   const [isAutoPlay, setIsAutoPlay] = useState(true)
-
-//   const projects = [
-//     {
-//   id: 1, // or whatever the next ID should be
-//   title: "MedNexus",
-//   subtitle: "AI-Powered Medical Emergency Platform",
-//   description:
-//     "MedNexus is an innovative AI-driven medical platform designed to provide emergency response services,real-time disease prediction, and a secure Web3 KYC verification system. It ensures rapid help in crises, enabling users to request professional assistance and predict illnesses through AI-powered analysis.",
-//   tech: ["Next.js", "MongoDB Atlas", "Express", "JavaScript", "Tailwind CSS", "Python"],
-//   metrics: { response: "< 30s", accuracy: "89%", },
-//   color: "from-green-500 via-blue-500 to-teal-500",
-//   preview: "/MedNexus.png?height=400&width=600",
-//   demoType: "interactive",
-//   links: {
-//       demo: "https://med-nexus.vercel.app/",
-//       github: "https://github.com/Jatin-L1/MedNexus"
-//     }
-// },
-//     {
-//   id: 2, // or whatever the next ID should be
-//   title: "Nova Academy",
-//   subtitle: "Smart Campus Management System",
-//   description:
-//     "Manage your academic journey effortlessly. Upload attendance with <,>facial recognition, stay updated on campus events, and register seamlessly—all in one place. Features include academic records tracking, attendance monitoring, campus events updates, and instant notifications for mission-critical updates.",
-//   tech: ["Next.js", "MongoDB", "Express", "JavaScript", "Tailwind CSS", "Face Recognition API"],
-//   metrics: { accuracy: "96%", events: "150+" },
-//   color: "from-indigo-500 via-purple-500 to-pink-500",
-//   preview: "/Nova.png?height=400&width=600",
-//   demoType: "interactive",
-//   links: {
-//       demo: "https://nova-academy-c7t6-coral.vercel.app/",
-//       github: "https://github.com/Jatin-L1/Nova-Academy"
-//     }
-// },
-// {
-//   id: 3, // or whatever the next ID should be
-//   title: "AI Chatbot",
-//   subtitle: "Universal Multi-Model AI Integration Hub",
-//   description:
-//     "This chatbot is designed to integrate multiple AI models seamlessly. Just add your API keys, and the chatbot will automatically connect and start working. No extra setup needed! Features automatic AI detection, <,>instant model switching, and unified chat interface that makes it easy to harness the power of different AI models in one place.",
-//   tech: ["TypeScript", "AI APIs", "React", "Tailwind CSS", "OpenAI" , "Gemni" , "Anthropic"],
-//   metrics: { response: "< 2s", accuracy: "99.4%" },
-//   color: "from-blue-500 via-cyan-500 to-teal-500",
-//   preview: "/chat.png?height=400&width=600",
-//   demoType: "interactive",
-//   links: {
-//       demo: "https://chit-chat-kappa-ten.vercel.app/",
-//       github: "https://github.com/Jatin-L1/ChatBot"
-//     }
-// },
-// {
-//   id: 4, // or whatever the next ID should be
-//   title: "MCQ Platform",
-//   subtitle: "Interactive Quiz System for Exam Preparation",
-//   description:
-//     "A comprehensive <strong>MCQ platform designed for batchmates</strong> to practice before exams. Create and share <strong>interactive quizzes</strong> for every exam subject, featuring <strong>real-time scoring</strong>, <strong>instant feedback</strong>, and <strong>performance analytics</strong>. Help your classmates prepare effectively with customized quiz sessions and detailed result tracking.",
-//   tech: ["Next.js", "Tailwind CSS", "JavaScript"],
-//   metrics: { quizzes: "100+", students: "50++", accuracy: "100%" },
-//   color: "from-orange-500 via-red-500 to-pink-500",
-//   preview: "/Quiz.png?height=400&width=600",
-//   demoType: "interactive",
-//   links: {
-//       demo: "https://java-mcq-platform.vercel.app/",
-//       github: "https://github.com/Jatin-L1/Java-MCQ-Platform"
-//     }
-  
-// },
-// {
-//   id: 5, // or whatever the next ID should be
-//   title: "Grainlyy",
-//   subtitle: "Blockchain-Based Ration Delivery Transparency Platform",
-//   description:"Grainlyy is a transparent, tamper-proof, blockchain-based platform to track and verify government ration deliveries. It leverages Ethereum, Chainlink, and location verification to eliminate corruption, ensure delivery accountability, and allow public and NGO-based verification—all without requiring a mobile app. Features smart contract automation, real-world GPS verification, and decentralized storage.",
-//   tech: ["Solidity", "Next.js", "Node.js", "Express.js", "Ethereum", "Chainlink", "MongoDB Atlas", "IPFS"],
-//   metrics: { deliveries: "500+", transparency: "100%", verification: "GPS+" },
-//   color: "from-emerald-500 via-green-500 to-lime-500",
-//   preview: "/grain.png?height=400&width=600",
-//   demoType: "interactive",
-//   links: {
-//       demo: "https://grainlyy.vercel.app/",
-//       github: "https://github.com/Jatin-L1/HackIndia-Spark-7-2025-PookieGrinders"
-//     }
-// },
-//   ]
-
-//   useEffect(() => {
-//     if (!isAutoPlay) return
-
-//     const interval = setInterval(() => {
-//       setActiveProject((prev) => (prev + 1) % projects.length)
-//     }, 5000)
-
-//     return () => clearInterval(interval)
-//   }, [isAutoPlay, projects.length])
-
-//   const currentProject = projects[activeProject]
-
-//   return (
-//     <section id="projects" className="min-h-screen py-20 relative overflow-hidden">
-//       {/* Dynamic Background */}
-//       <div className="absolute inset-0">
-//         <motion.div
-//           className={`absolute inset-0 bg-gradient-to-br ${currentProject.color} opacity-5`}
-//           key={activeProject}
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 0.05 }}
-//           transition={{ duration: 1 }}
-//         />
-//       </div>
-
-//       <div className="container mx-auto px-6 relative z-10">
-//         <motion.div
-//           className="text-center mb-16"
-//           initial={{ opacity: 0, y: 50 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           viewport={{ once: true }}
-//         >
-//           <Badge variant="outline" className="border-pink-400/50 text-pink-400 bg-pink-400/10 mb-8">
-//             Innovation Showcase
-//           </Badge>
-
-//           <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6">Projects</h2>
-
-//           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-//             Pushing the boundaries of what's possible with cutting-edge technology and revolutionary ideas.
-//           </p>
-//         </motion.div>
-
-//         <div className="max-w-7xl mx-auto">
-//           {/* Main Project Display */}
-//           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-//             {/* Project Info */}
-//             <motion.div
-//               key={activeProject}
-//               className="space-y-8"
-//               initial={{ opacity: 0, x: -100 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.8 }}
-//             >
-//               <div className="space-y-4">
-//                 <Badge className={`bg-gradient-to-r ${currentProject.color} text-white border-0`}>
-//                   {currentProject.demoType.toUpperCase()} DEMO
-//                 </Badge>
-
-//                 <h3 className="text-4xl lg:text-5xl font-bold text-white">{currentProject.title}</h3>
-
-//                 <p className="text-xl text-cyan-400 font-light">{currentProject.subtitle}</p>
-
-//                 <p className="text-lg text-white/70 leading-relaxed">{currentProject.description}</p>
-//               </div>
-
-//               {/* Tech Stack Pills */}
-//               <div className="flex flex-wrap gap-3">
-//                 {currentProject.tech.map((tech, index) => (
-//                   <motion.div
-//                     key={tech}
-//                     className="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-sm"
-//                     initial={{ opacity: 0, scale: 0 }}
-//                     animate={{ opacity: 1, scale: 1 }}
-//                     transition={{ delay: index * 0.1 }}
-//                   >
-//                     {tech}
-//                   </motion.div>
-//                 ))}
-//               </div>
-
-//               {/* Metrics */}
-//               <div className="grid grid-cols-3 gap-4">
-//                 {Object.entries(currentProject.metrics).map(([key, value], index) => (
-//                   <motion.div
-//                     key={key}
-//                     className="text-center p-4 bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl"
-//                     initial={{ opacity: 0, y: 20 }}
-//                     animate={{ opacity: 1, y: 0 }}
-//                     transition={{ delay: 0.5 + index * 0.1 }}
-//                   >
-//                     <div
-//                       className={`text-2xl font-bold bg-gradient-to-r ${currentProject.color} bg-clip-text text-transparent`}
-//                     >
-//                       {value}
-//                     </div>
-//                     <div className="text-white/60 text-sm capitalize">{key}</div>
-//                   </motion.div>
-//                 ))}
-//               </div>
-
-//               {/* Action Buttons */}
-//               <div className="flex space-x-4">
-//   <Button 
-//     className={`bg-gradient-to-r ${currentProject.color} hover:opacity-90 text-white border-0`}
-//     onClick={() => {
-//       if (typeof window !== 'undefined' && currentProject.links?.demo) {
-//         window.open(currentProject.links.demo, '_blank')
-//       }
-//     }}
-//   >
-//     <ExternalLink className="w-4 h-4 mr-2" />
-//     Launch Demo
-//   </Button>
-//   <Button 
-//     variant="outline" 
-//     className="border-white/20 text-white hover:bg-white/10"
-//     onClick={() => {
-//       if (typeof window !== 'undefined' && currentProject.links?.github) {
-//         window.open(currentProject.links.github, '_blank')
-//       }
-//     }}
-//   >
-//     <Github className="w-4 h-4 mr-2" />
-//     View Code
-//   </Button>
-// </div>
-//             </motion.div>
-
-//             {/* 3D Project Preview */}
-//             <motion.div
-//               key={activeProject}
-//               className="relative"
-//               initial={{ opacity: 0, x: 100, rotateY: -15 }}
-//               animate={{ opacity: 1, x: 0, rotateY: 0 }}
-//               transition={{ duration: 0.8 }}
-//             >
-//               <div className="relative group perspective-1000">
-//                 {/* Main Preview */}
-//                 <div className="relative transform-gpu transition-all duration-500 group-hover:rotateY-12 group-hover:rotateX-5">
-//                   <div
-//                     className={`absolute inset-0 bg-gradient-to-r ${currentProject.color} rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity`}
-//                   />
-
-//                   <Card className="relative bg-black/40 backdrop-blur-lg border-white/20 overflow-hidden">
-//                     <div className="aspect-video relative">
-//                       <Image
-//                         src={currentProject.preview || "/placeholder.svg"}
-//                         alt={currentProject.title}
-//                         fill
-//                         className="object-cover"
-//                       />
-
-//                       {/* Interactive Overlay */}
-//                       <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-//                         <motion.div
-//                           className={`w-20 h-20 bg-gradient-to-r ${currentProject.color} rounded-full flex items-center justify-center cursor-pointer`}
-//                           whileHover={{ scale: 1.1 }}
-//                           whileTap={{ scale: 0.9 }}
-//                         >
-//                           <span className="text-white text-2xl">▶</span>
-//                         </motion.div>
-//                       </div>
-//                     </div>
-//                   </Card>
-//                 </div>
-
-//                 {/* Floating Elements */}
-//                 <motion.div
-//                   className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
-//                   animate={{ rotate: 360 }}
-//                   transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-//                 >
-//                   #{activeProject + 1}
-//                 </motion.div>
-//               </div>
-//             </motion.div>
-//           </div>
-
-//           {/* Project Navigation */}
-//           <div className="flex justify-center items-center space-x-8">
-//             {/* Auto-play Toggle */}
-//             <motion.button
-//               className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-colors"
-//               onClick={() => setIsAutoPlay(!isAutoPlay)}
-//               whileHover={{ scale: 1.1 }}
-//               whileTap={{ scale: 0.9 }}
-//             >
-//               {isAutoPlay ? "⏸️" : "▶️"}
-//             </motion.button>
-
-//             {/* Project Dots */}
-//             <div className="flex space-x-3">
-//               {projects.map((project, index) => (
-//                 <motion.button
-//                   key={project.id}
-//                   className={`w-4 h-4 rounded-full transition-all duration-300 ${
-//                     index === activeProject
-//                       ? `bg-gradient-to-r ${currentProject.color}`
-//                       : "bg-white/30 hover:bg-white/50"
-//                   }`}
-//                   onClick={() => {
-//                     setActiveProject(index)
-//                     setIsAutoPlay(false)
-//                   }}
-//                   whileHover={{ scale: 1.2 }}
-//                   whileTap={{ scale: 0.8 }}
-//                 />
-//               ))}
-//             </div>
-
-//             {/* Navigation Arrows */}
-//             <div className="flex space-x-2">
-//               <motion.button
-//                 className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-colors"
-//                 onClick={() => setActiveProject((prev) => (prev - 1 + projects.length) % projects.length)}
-//                 whileHover={{ scale: 1.1 }}
-//                 whileTap={{ scale: 0.9 }}
-//               >
-//                 ←
-//               </motion.button>
-//               <motion.button
-//                 className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-colors"
-//                 onClick={() => setActiveProject((prev) => (prev + 1) % projects.length)}
-//                 whileHover={{ scale: 1.1 }}
-//                 whileTap={{ scale: 0.9 }}
-//               >
-//                 →
-//               </motion.button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
-
-
 
 
 // Revolutionary 3D Project Showcase
@@ -1264,6 +992,22 @@ const ProjectsSection = () => {
           github: "https://github.com/Jatin-L1/HackIndia-Spark-7-2025-PookieGrinders"
         }
     },
+    {
+    id: 6,
+    title: "Skill Sync",
+    subtitle: "AI-Powered Career Development Platform",
+    description:
+      "Skill Sync is an innovative platform designed to bridge the gap between your current skill set and the requirements of your dream job. With Skill Sync, you can upload your resume, select your target job, and receive a detailed analysis that includes: Skill Gap Analysis & Skill Extraction, Personalized Roadmap with Course Recommendations, Timeline Generation for Acquiring Missing Skills, and Job Match Percentage.",
+    tech: ["AI/ML", "React", "Node.js", "NLP", "Resume Parsing", "Course API Integration"],
+    metrics: { accuracy: "94%", matches: "98%", roadmaps: "100%" },
+    color: "from-blue-500 via-purple-500 to-violet-500",
+    preview: "/Skill.png", // Replace with actual image when available
+    demoType: "interactive",
+    links: {
+      demo: "https://skill-sync-mu.vercel.app/", // Update with actual link when available
+      github: "https://github.com/Namann-14/Skill-Sync" // Update with actual repo when available
+    }
+  }
   ]
 
   useEffect(() => {
@@ -1381,18 +1125,17 @@ const ProjectsSection = () => {
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Launch Demo
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-white/20 text-white hover:bg-white/10"
-                  onClick={() => {
-                    if (typeof window !== 'undefined' && currentProject.links?.github) {
-                      window.open(currentProject.links.github, '_blank')
-                    }
-                  }}
-                >
-                  <Github className="w-4 h-4 mr-2" />
-                  View Code
-                </Button>
+                <button 
+  className="flex items-center justify-center px-4 py-2 rounded-md border border-white/20 text-white bg-transparent hover:bg-black/40 hover:border-white/40 transition-colors"
+  onClick={() => {
+    if (typeof window !== 'undefined' && currentProject.links?.github) {
+      window.open(currentProject.links.github, '_blank')
+    }
+  }}
+>
+  <Github className="w-4 h-4 mr-2" />
+  View Code
+</button>
               </div>
             </motion.div>
 
