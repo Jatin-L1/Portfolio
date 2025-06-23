@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { Analytics } from "@vercel/analytics/next"
 import {
   Github,
   Linkedin,
@@ -1396,6 +1397,7 @@ export default function Portfolio() {
       <ProjectsSection />
       <AchievementsSection />
       <ContactSection />
+      <Analytics />
     </div>
   )
 }
