@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#141414"/>
+  <rect width="60" height="60" x="2" y="2" rx="14" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+  <text x="32" y="41" font-family="'Space Grotesk', system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#f8f7f4" text-anchor="middle" letter-spacing="-0.03em">J.S</text>
+</svg>
